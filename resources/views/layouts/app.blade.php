@@ -358,6 +358,34 @@
               </div>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#Presence" aria-expanded="false" aria-controls="auth">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">Fournisseur</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="Presence">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('fournisseur.nouveau') }}"> nouveau </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('fournisseur.liste') }}"> liste </a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#Presence" aria-expanded="false" aria-controls="auth">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">Produit</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="Presence">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('produit.nouveau') }}"> nouveau </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('produit.liste') }}"> liste </a></li>
+                </ul>
+              </div>
+            </li>
+
 
           <li class="nav-item nav-category">Finance</li>
           <li class="nav-item">

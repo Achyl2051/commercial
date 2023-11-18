@@ -12,6 +12,8 @@ use App\Http\Controllers\OffreController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\BonCommandeController;
 use App\Http\Controllers\DetailBonCommandeController;
+use App\Http\Controllers\fournisseurController;
+use App\Http\Controllers\produitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,6 +121,18 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/presence',[PresenceController::class,'presence'])->name('presence.presence');
         Route::post('/liste',[PresenceController::class,'liste'])->name('presence.liste');
         Route::get('/choix',[PresenceController::class,'choix'])->name('presence.choix');
+    });
+    Route::prefix('fournisseur')->group(function() {
+        Route::get('/nouveau',[fournisseurController::class,'nouveau'])->name('fournisseur.nouveau');
+        Route::get('/liste',[fournisseurController::class,'liste'])->name('fournisseur.liste');
+        Route::post('/inscrire',[fournisseurController::class,'inscrire'])->name('fournisseur.inscrire');
+    });
+    Route::prefix('produit')->group(function() {
+        Route::get('/nouveau',[produitController::class,'nouveau'])->name('produit.nouveau');
+        Route::get('/liste',[produitController::class,'liste'])->name('produit.liste');
+        Route::get('/prixProduit/{idProduit}',[produitController::class,'prixProduit'])->name('produit.prixProduit');
+        Route::post('/inscrire',[produitController::class,'inscrire'])->name('produit.inscrire');
+        Route::post('/insererPrixProduit',[produitController::class,'insererPrixProduit'])->name('produit.insererPrixProduit');
     });
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
