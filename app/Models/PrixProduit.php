@@ -11,4 +11,9 @@ class PrixProduit extends Model
     public $timestamps = false;
     protected $guarded = [''];
     protected $table = 'prix_produits';
+
+    public function fournisseur()
+    {
+        return $this->belongsTo(Fournisseur::class, 'idFournisseur', 'idFournisseur');
+    }
 }

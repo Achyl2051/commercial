@@ -45,4 +45,22 @@ class produitController extends Controller
         ]);
         return redirect()->route('produit.liste');  
     }
+
+    public function listePrix($idProduit) {
+        $prixProduit = PrixProduit::with('fournisseur')->where('idProduit',$idProduit)->get();
+
+        return view('produit.listePrix', ['prixProduit' => $prixProduit]);
+    }
+    
+    public function modifPrix($idProduit,$idFournisseur) {
+        $prixProduit = PrixProduit::where('idFournisseur',$idFournisseur)->where('idProduit',$idProduit)->get();
+
+        return view('produit.modifPrix', ['prixProduit' => $prixProduit]);
+    }
+
+    public function updatePrixProduit(Request $request)
+    {
+        PrixProduit::where('idProduit',$request->idProduit)->where('idFournisseur',$request->idFournisseur)->update(['prix'=>$request->prix]);
+        return redirect()->route('produit.liste');  
+    }
 }

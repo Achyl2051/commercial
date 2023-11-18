@@ -131,8 +131,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/nouveau',[produitController::class,'nouveau'])->name('produit.nouveau');
         Route::get('/liste',[produitController::class,'liste'])->name('produit.liste');
         Route::get('/prixProduit/{idProduit}',[produitController::class,'prixProduit'])->name('produit.prixProduit');
+        Route::get('/listePrix/{idProduit}',[produitController::class,'listePrix'])->name('produit.listePrix');
+        Route::get('/modifPrix/{idProduit}/{idFournisseur}',[produitController::class,'modifPrix'])->name('produit.modifPrix');
         Route::post('/inscrire',[produitController::class,'inscrire'])->name('produit.inscrire');
         Route::post('/insererPrixProduit',[produitController::class,'insererPrixProduit'])->name('produit.insererPrixProduit');
+        Route::post('/updatePrixProduit',[produitController::class,'updatePrixProduit'])->name('produit.updatePrixProduit');
     });
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
