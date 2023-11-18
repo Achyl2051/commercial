@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrixProduit extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $guarded = [''];
+    protected $table = 'prix_produits';
 }
