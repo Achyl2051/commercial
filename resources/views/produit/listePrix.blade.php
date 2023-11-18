@@ -10,38 +10,26 @@
           <thead>
             <tr>
               <th>
-                Identifiant
+                Fournisseur
               </th>
               <th>
-                Nom
+                Prix
               </th>
-              <th>
-                Nature
-              </th>
-              <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            @forelse ($produit as $p)
+            @forelse ($prixProduit as $p)
             <tr>
               <td>
-                {{ $p->idProduit }}
+                {{ $p->fournisseur->nom }}
               </td>
               <td>
-                {{ $p->nom }}
+                {{ $p->prix }}
               </td>
               <td>
-                {{ $p->nature }}
-              </td>
-              <td>
-                <a href="{{ route('produit.prixProduit', ['idProduit' => $p->idProduit]) }}" class="btn btn-success">
-                  Ajout prix  
-                </a>
-              </td>
-              <td>
-                <a href="{{ route('produit.listePrix', ['idProduit' => $p->idProduit]) }}" class="btn btn-success">
-                  Voir prix  
+                <a href="{{ route('produit.modifPrix', ['idProduit' => $p->idProduit,'idFournisseur' => $p->fournisseur->idFournisseur]) }}" class="btn btn-success">
+                  Modifier prix  
                 </a>
               </td>
             </tr>
