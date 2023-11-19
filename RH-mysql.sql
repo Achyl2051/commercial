@@ -350,3 +350,13 @@ CREATE TABLE detail_bon_commandes (
 );
   --  FOREIGN KEY (idProduit) REFERENCES produits(idProduit),
   --  FOREIGN KEY (idBonCommande) REFERENCES bonCommandes(idBonCommande)
+
+  CREATE TABLE pro_formas(
+    idProForma int,
+    idProduit int,
+    idFournisseur int,
+    dateModification date,
+    prix float,
+    foreign key (idProduit) REFERENCES produits(idProduit),
+    foreign key (idFournisseur) REFERENCES fournisseurs(idFournisseur)
+  );
