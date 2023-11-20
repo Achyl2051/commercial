@@ -350,7 +350,9 @@
                   <li class="nav-item"> <a class="nav-link" href="{{ route('bonCommandes.nouveau') }}"> nouveau </a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('detailsBonCommandes.nouveau') }}"> Modifier </a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ route('bonCommandes.liste') }}"> liste </a></li>
+                  @role('finance')
                   <li class="nav-item"> <a class="nav-link" href="{{ route('bonCommandes.notiffinance') }}"> Notif finance </a></li>
+                  @endrole
                   @role('daf')
                     <li class="nav-item"> <a class="nav-link" href="{{ route('bonCommandes.notifdaf') }}"> Notif daf </a></li>
                   @endrole

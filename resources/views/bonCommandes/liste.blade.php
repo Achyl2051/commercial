@@ -41,7 +41,7 @@
                     $etat='Non valider';
                   }  
                   else if ($bonCommande->etat==1){
-                    $etat='Non modifiable';
+                    $etat='attente validation finance';
                   }
                   else if ($bonCommande->etat==5){
                     $etat='attente validation daf';

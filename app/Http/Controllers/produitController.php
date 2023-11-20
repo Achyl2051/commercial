@@ -47,7 +47,7 @@ class produitController extends Controller
     }
 
     public function listePrix($idProduit) {
-        $prixProduit = PrixProduit::with('fournisseur')->where('idProduit',$idProduit)->get();
+        $prixProduit = PrixProduit::with('fournisseur')->where('idProduit',$idProduit)->orderBy('prix', 'asc')->get();
 
         return view('produit.listePrix', ['prixProduit' => $prixProduit]);
     }
