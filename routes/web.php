@@ -14,6 +14,9 @@ use App\Http\Controllers\BonCommandeController;
 use App\Http\Controllers\DetailBonCommandeController;
 use App\Http\Controllers\fournisseurController;
 use App\Http\Controllers\produitController;
+use App\Http\Controllers\ProFormaController;
+use App\Http\Controllers\DemandeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/notifdaf',[BonCommandeController::class,'notifdaf'])->name('bonCommandes.notifdaf');
         Route::get('/liste',[BonCommandeController::class,'liste'])->name('bonCommandes.liste');
         Route::post('/details/{idBonCommande}',[BonCommandeController::class,'details'])->name('bonCommandes.details');
+        Route::post('/pdfdetails/{idBonCommande}',[BonCommandeController::class,'pdfdetails'])->name('bonCommandes.pdfdetails');
         Route::post('/insertion',[BonCommandeController::class,'insertion'])->name('bonCommandes.insertion');
         Route::post('/validerfinance',[BonCommandeController::class,'validerfinance'])->name('bonCommandes.validerfinance');
         Route::post('/validerdaf',[BonCommandeController::class,'validerdaf'])->name('bonCommandes.validerdaf');
@@ -136,7 +140,26 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/inscrire',[produitController::class,'inscrire'])->name('produit.inscrire');
         Route::post('/insererPrixProduit',[produitController::class,'insererPrixProduit'])->name('produit.insererPrixProduit');
         Route::post('/updatePrixProduit',[produitController::class,'updatePrixProduit'])->name('produit.updatePrixProduit');
+        Route::get('/voirProForma/{idProduit}/{idFournisseur}',[produitController::class,'voirProForma'])->name('produit.voirProForma');
     });
+
+
+    Route::prefix('proforma')->group(function() {
+        Route::get('/nouveau',[ProFormaController::class ,'nouveau'])->name('proforma.nouveau');
+        Route::post('/inserer',[ProFormaController::class ,'inserer'])->name('proforma.inserer');
+    });
+
+    Route::prefix('demande')->group(function() {
+        Route::get('/nouveau',[DemandeController::class ,'nouveau'])->name('demande.nouveau');
+        Route::post('/demander',[DemandeController::class ,'demander'])->name('demande.demander');
+        // Route::get('/liste',[DemandeController::class ,'liste'])->name('demande.liste');
+        Route::get('/validation',[DemandeController::class ,'validation'])->name('demande.validation');
+        Route::get('/valider/{idDemande}',[DemandeController::class ,'valider'])->name('demande.valider');
+        Route::get('/refuser/{idDemande}',[DemandeController::class ,'refuser'])->name('demande.refuser');
+        Route::get('/generatePDF',[DemandeController::class ,'generatePDF'])->name('demande.generatePDF');
+        Route::get('/generateProForma',[DemandeController::class ,'generateProForma'])->name('demande.generateProForma');
+    });
+
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/home', [UserController::class, 'dashboard'])->name('dashboard');

@@ -34,6 +34,7 @@
               <td>
                 {{ $p->nature }}
               </td>
+              @can('valider demande produit')
               <td>
                 <a href="{{ route('produit.prixProduit', ['idProduit' => $p->idProduit]) }}" class="btn btn-success">
                   Ajout prix  
@@ -44,6 +45,7 @@
                   Voir prix  
                 </a>
               </td>
+              @endcan
             </tr>
             @empty
               <p>aucun produit</p>

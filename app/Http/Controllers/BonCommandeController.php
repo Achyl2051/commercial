@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\DetailBonCommande;
 use App\Models\BonCommande;
 use App\Models\Fournisseur;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class BonCommandeController extends Controller
 {
@@ -76,6 +78,17 @@ class BonCommandeController extends Controller
         $bonCommande = BonCommande::find($idBonCommande);
 
         return view('bonCommandes.details', ['details' => $details,'bonCommande' => $bonCommande]);
+    }
+
+    public function pdfdetails($idBonCommande)
+    {
+        $detailBonCommande = new DetailBonCommande();
+        $details = $detailBonCommande->detailsByBonCommande($idBonCommande);
+        $bonCommande = BonCommande::find($idBonCommande);
+
+        $pdf = PDF::loadView('bonCommandes.pdfBonCommande', ['details' => $details,'bonCommande' => $bonCommande]);
+        return $pdf->stream('bonCommande.pdf');
+
     }
 
 }

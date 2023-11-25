@@ -22,7 +22,10 @@
                Etat
               </th>
               <th>
-                Valider
+                Details
+              </th>
+              <th>
+                PDF
               </th>
             </tr>
           </thead>
@@ -41,7 +44,7 @@
                     $etat='Non valider';
                   }  
                   else if ($bonCommande->etat==1){
-                    $etat='Non modifiable';
+                    $etat='attente validation finance';
                   }
                   else if ($bonCommande->etat==5){
                     $etat='attente validation daf';
@@ -56,7 +59,14 @@
                 <form action="{{ route('bonCommandes.details', [$bonCommande->idBonCommande]) }} " method="post" enctype="multipart/form-data">                    
                     @csrf
                     @method('post')
-                    <input type="submit" value="Details">
+                    <input type="submit" value="Details" class="btn btn-success">
+                </form>
+              </td>
+              <td>
+                <form action="{{ route('bonCommandes.pdfdetails', [$bonCommande->idBonCommande]) }} " method="post" enctype="multipart/form-data">                    
+                    @csrf
+                    @method('post')
+                    <input type="submit" value="PDF" class="btn btn-success">
                 </form>
               </td>
             </tr>
