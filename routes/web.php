@@ -16,6 +16,8 @@ use App\Http\Controllers\fournisseurController;
 use App\Http\Controllers\produitController;
 use App\Http\Controllers\ProFormaController;
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\MyMailController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -158,6 +160,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/refuser/{idDemande}',[DemandeController::class ,'refuser'])->name('demande.refuser');
         Route::get('/generatePDF',[DemandeController::class ,'generatePDF'])->name('demande.generatePDF');
         Route::get('/generateProForma',[DemandeController::class ,'generateProForma'])->name('demande.generateProForma');
+    });
+
+    Route::prefix('email')->group(function() {
+        Route::get('/demandeProForma',[MyMailController::class ,'demandeProForma'])->name('email.demandeProForma');
+
     });
 
     
