@@ -1,0 +1,45 @@
+﻿--Momba ilay permission--
+
+->lancé-o ty commande ty 
+php artisan migrate --path=database/migrations/2023_11_02_074348_create_permission_tables.php
+
+
+
+METHODE 1:
+manaova inscription user name = admin email = admin@gmail.com pass = admin
+
+insert into roles values (0,'admin',web,'2023-11-05 20:01:03','2023-11-05 20:01:03');
+insert into permissions values (0,'gestion rôle et permission',web,'2023-11-05 20:01:03','2023-11-05 20:01:03');
+insert into roles role_has_permissions values (0,0);
+insert into model_has_roles values(0,'App\Models\User', $idAdmin$ );
+
+
+METHODE 2:
+manao inscription user vaovao hoe name = admin email = admin@gmail.com pass = admin
+
+de ao amleh permission et role :
+ao am creation role:
+-crée un role 'admin'
+-crée une permission 'gestion role et permisssion'
+
+puis ao am attribution de permission
+-selectionne admin et coche 'gestion role et permisssion' et valide
+
+enfin dans attribution role aux users
+-selectionnne admin et coche le role 'admin' et valide
+
+et
+
+décomment-eo daholy ny @route() ao am app.blade.php
+de comment-eo daholy ny if ($user->hasRole('admin')) ao am RoleController
+
+
+
+->page à avoir app.blade php
+  ao no mosy fonction hoe role() na can()
+
+->RoleController.php
+
+
+ny admin ihany no afaka manao gestion des role et permission  
+--
