@@ -38,7 +38,7 @@
                     @csrf
                     @method('post')
                     <input type="hidden" name="idBonCommande" value={{ $bonCommande->idBonCommande }}">
-                    <input type="submit" value="valider">
+                    <input type="submit" value="valider"  class="btn btn-success">
                 </form>
               </td>
             </tr>

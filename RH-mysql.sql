@@ -295,42 +295,76 @@ create table Presences(
 );
 
 -- commerciale
+CREATE TABLE departements (
+  idDepartement int primary key AUTO_INCREMENT,
+  nom varchar(200)
+);
+
+insert into departements values(1,'Informatique');
+insert into departements values(2,'Resource Humaine');
+insert into departements values(3,'Finance');
+insert into departements values(4,'Commercial');
+
 
 CREATE TABLE fournisseurs (
-    idFournisseur SERIAL PRIMARY KEY,
+    idFournisseur int primary key AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
     adresse VARCHAR(255),
     telephone VARCHAR(15),
     email VARCHAR(255),
-    typeProduit VARCHAR(100)
+    typeProduit varchar(255)
 );
 INSERT INTO fournisseurs (nom, adresse, telephone, email, typeProduit) VALUES ('Lala', 'Analakely Lot II bis', '0385421645', 'fournisseur1@example.com', 'Sante');
 
 CREATE TABLE produits (
-    idProduit SERIAL PRIMARY KEY,
+    idProduit int primary key AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
     nature VARCHAR(100)
 );
 INSERT INTO produits (nom, nature) VALUES ('Gel Main', 'sante');
 INSERT INTO produits (nom, nature) VALUES ('Savon', 'sante');
 
+CREATE TABLE demandes (
+    idDemande int primary key AUTO_INCREMENT,
+    idProduit int,
+    idDepartement int,
+    quantite float,
+    dateDemande date,
+    raison text,
+    valider int default 0,
+    recu int default 0,
+    foreign key (idProduit) REFERENCES produits(idProduit),
+    foreign key (idDepartement) REFERENCES departements(idDepartement)
+);
+
+CREATE TABLE pro_formas(
+    idProForma int primary key AUTO_INCREMENT,
+    idProduit int,
+    idFournisseur int,
+    prix float,
+    dateModification date,
+    foreign key (idProduit) REFERENCES produits(idProduit),
+    foreign key (idFournisseur) REFERENCES fournisseurs(idFournisseur)
+);
+
 CREATE TABLE prix_produits (
     idProduit int not null,
     idFournisseur int not null,
     prix double precision
 );
+
 INSERT INTO prix_produits (idProduit, idFournisseur, prix) VALUES (1,1,7500);
 INSERT INTO prix_produits (idProduit, idFournisseur, prix) VALUES (2,1,700);
 
 CREATE TABLE tvas (
-    idTva serial primary key,
+    idTva int primary key AUTO_INCREMENT,
     valeur double precision
 );
 insert into tvas(valeur) values(0);
 insert into tvas(valeur) values(20);
 
 CREATE TABLE bon_commandes (
-    idBonCommande SERIAL PRIMARY KEY,
+    idBonCommande int primary key AUTO_INCREMENT,
     date DATE,
     idFournisseur INT,
     livraison DOUBLE PRECISION,

@@ -32,6 +32,11 @@
                   Modifier prix  
                 </a>
               </td>
+              <td>
+                <a href="{{ route('produit.voirProForma', ['idProduit' => $p->idProduit,'idFournisseur' => $p->fournisseur->idFournisseur]) }}" class="btn btn-success">
+                  demande pro forma
+                </a>
+              </td>
             </tr>
             @empty
               <p>aucun produit</p>

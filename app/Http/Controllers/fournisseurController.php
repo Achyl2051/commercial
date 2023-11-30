@@ -25,7 +25,7 @@ class fournisseurController extends Controller
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
             'email' => $request->email,
-            'typeProduit' => $request->typeProduit
+            // 'typeProduit' => $request->typeProduit
         ]);
         return redirect()->route('fournisseur.liste');  
     }
