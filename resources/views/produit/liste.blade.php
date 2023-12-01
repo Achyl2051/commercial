@@ -18,6 +18,9 @@
               <th>
                 Nature
               </th>
+              <th>
+                Type
+              </th>
               <th></th>
               <th></th>
             </tr>
@@ -33,6 +36,9 @@
               </td>
               <td>
                 {{ $p->nature }}
+              </td>
+              <td>
+                {{ $p->type }}
               </td>
               @can('valider demande produit')
               <td>

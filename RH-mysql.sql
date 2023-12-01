@@ -319,10 +319,11 @@ INSERT INTO fournisseurs (nom, adresse, telephone, email, typeProduit) VALUES ('
 CREATE TABLE produits (
     idProduit int primary key AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
-    nature VARCHAR(100)
+    nature VARCHAR(100),
+    type VARCHAR(100)
 );
-INSERT INTO produits (nom, nature) VALUES ('Gel Main', 'sante');
-INSERT INTO produits (nom, nature) VALUES ('Savon', 'sante');
+INSERT INTO produits (nom, nature) VALUES ('Gel Main', 'sante','LIFO');
+INSERT INTO produits (nom, nature) VALUES ('Savon', 'sante','FIFO');
 
 CREATE TABLE demandes (
     idDemande int primary key AUTO_INCREMENT,
@@ -384,3 +385,31 @@ CREATE TABLE detail_bon_commandes (
 );
   --  FOREIGN KEY (idProduit) REFERENCES produits(idProduit),
   --  FOREIGN KEY (idBonCommande) REFERENCES bonCommandes(idBonCommande)
+
+CREATE TABLE magasins (
+    idMagasin int PRIMARY KEY auto_increment, 
+    nom VARCHAR(255) NOT NULL,
+    localisation VARCHAR(255),
+    ouverture DATE
+);
+
+CREATE TABLE entres(
+    idEntre int PRIMARY KEY,
+    idProduit INT NOT NULL,
+    idMagasin INT NOT NULL,
+    date DATE NOT NULL,
+    quantite DOUBLE PRECISION NOT NULL,
+    prixUnitaire DOUBLE PRECISION NOT NULL,
+    FOREIGN KEY (idProduit) REFERENCES produits (idProduit),
+    FOREIGN KEY (idMagasin) REFERENCES magasins (idMagasin)
+);
+
+CREATE TABLE sorties(
+    idSortie int PRIMARY KEY,
+    idProduit INT NOT NULL,
+    idEntre INT NOT NULL,
+    date DATE NOT NULL,
+    quantite DOUBLE PRECISION NOT NULL,
+    FOREIGN KEY (idProduit) REFERENCES produits (idProduit),
+    FOREIGN KEY (idEntre) REFERENCES entres (idEntre)
+);

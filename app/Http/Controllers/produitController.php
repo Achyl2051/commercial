@@ -25,7 +25,8 @@ class produitController extends Controller
     {
         Produit::create([
             'nom' => $request->nom,
-            'nature' => $request->nature
+            'nature' => $request->nature,
+            'type' => $request->type
         ]);
         return redirect()->route('produit.liste');  
     }

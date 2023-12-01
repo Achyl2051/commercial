@@ -10,7 +10,7 @@ class Produit extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'idProduit';
-    protected $fillable = ['idProduit', 'nom', 'nature'];
+    protected $fillable = ['idProduit', 'nom', 'nature','type'];
 
     public function getPrixProduit($idFournisseur)
     {

@@ -16,6 +16,12 @@
                 <label for="exampleInputUsername2">Nature</label>
                 <input type="text" name="nature" class="form-control" id="exampleInputUsername2" placeholder="nature">
           </div>
+          <label for="exampleInputPassword1">Type</label>
+                <select name="type" class="form-control" >
+                  <option value="LIFO">LIFO </option>
+                  <option value="FIFO">FIFO </option>
+                  <option value="CUMP">CUMP </option>
+                </select>
           <button type="submit" class="btn btn-primary me-2">Inserer</button>
         </form>
       </div>
