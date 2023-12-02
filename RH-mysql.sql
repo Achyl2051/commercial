@@ -392,9 +392,12 @@ CREATE TABLE magasins (
     localisation VARCHAR(255),
     ouverture DATE
 );
+INSERT INTO magasins (nom, localisation, ouverture) VALUES
+    ('Jumbo', 'Analakely', '2023-11-10'),
+    ('U', 'Ilafy', '2023-11-10');
 
 CREATE TABLE entres(
-    idEntre int PRIMARY KEY,
+    idEntre int PRIMARY KEY auto_increment,
     idProduit INT NOT NULL,
     idMagasin INT NOT NULL,
     date DATE NOT NULL,
@@ -405,11 +408,22 @@ CREATE TABLE entres(
 );
 
 CREATE TABLE sorties(
-    idSortie int PRIMARY KEY,
-    idProduit INT NOT NULL,
+    idSortie int PRIMARY KEY auto_increment,
     idEntre INT NOT NULL,
     date DATE NOT NULL,
     quantite DOUBLE PRECISION NOT NULL,
-    FOREIGN KEY (idProduit) REFERENCES produits (idProduit),
     FOREIGN KEY (idEntre) REFERENCES entres (idEntre)
 );
+
+CREATE TABLE unites (
+    idUnite int PRIMARY KEY auto_increment,
+    nom VARCHAR(50) NOT NULL
+);
+INSERT INTO unites (Nom) VALUES
+    ('Kg'),
+    ('Litre'),
+    ('Unite');
+
+ALTER TABLE produits
+ADD COLUMN idUnite INT(11) AFTER type;
+ALTER TABLE produits ADD FOREIGN KEY (idUnite) REFERENCES unites(idUnite);

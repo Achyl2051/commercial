@@ -453,6 +453,22 @@
                         </div>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#Produit" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                            <span class="menu-title">Stocks</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="Produit">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('stock.entre') }}">entre de stock </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('stock.sortie') }}">sortie de stock </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('stock.choiceEtatStock') }}">etat de stock </a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                     {{-- DEMANDES DE PRODUIT --}}
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#demandeProduit" aria-expanded="false"

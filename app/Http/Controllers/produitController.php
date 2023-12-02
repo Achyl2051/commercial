@@ -6,19 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Produit;
 use App\Models\Fournisseur;
 use App\Models\PrixProduit;
+use App\Models\Unite;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class produitController extends Controller
 {
     public function liste() {
-        $produit = Produit::all();
+        $produit = Produit::with('unite')->get();
 
         return view('produit.liste', ['produit' => $produit]);
     }
 
     public function nouveau()
     {
-        return view('produit.nouveau');
+        $unite=Unite::all();
+        return view('produit.nouveau', ['unite' => $unite]);
     }
 
     public function inscrire(Request $request)
@@ -26,7 +28,8 @@ class produitController extends Controller
         Produit::create([
             'nom' => $request->nom,
             'nature' => $request->nature,
-            'type' => $request->type
+            'type' => $request->type,
+            'idUnite' => $request->idUnite,
         ]);
         return redirect()->route('produit.liste');  
     }

@@ -10,7 +10,12 @@ class Produit extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'idProduit';
-    protected $fillable = ['idProduit', 'nom', 'nature','type'];
+    protected $fillable = ['idProduit', 'nom', 'nature','type','idUnite'];
+
+    public function unite()
+    {
+        return $this->belongsTo(Unite::class, 'idUnite', 'idUnite');
+    }
 
     public function getPrixProduit($idFournisseur)
     {

@@ -17,6 +17,7 @@ use App\Http\Controllers\produitController;
 use App\Http\Controllers\ProFormaController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\MyMailController;
+use App\Http\Controllers\StockController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -165,6 +166,15 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('email')->group(function() {
         Route::get('/demandeProForma',[MyMailController::class ,'demandeProForma'])->name('email.demandeProForma');
 
+    });
+
+    Route::prefix('stock')->group(function() {
+        Route::get('/entre',[StockController::class,'entre'])->name('stock.entre');
+        Route::post('/insertEntre',[StockController::class ,'insertEntre'])->name('stock.insertEntre');
+        Route::get('/sortie',[StockController::class,'sortie'])->name('stock.sortie');
+        Route::post('/sortiStock',[StockController::class ,'sortiStock'])->name('stock.sortiStock');
+        Route::get('/choiceEtatStock',[StockController::class,'choiceEtatStock'])->name('stock.choiceEtatStock');
+        Route::post('/etatStock',[StockController::class ,'etatStock'])->name('stock.etatStock');
     });
 
     

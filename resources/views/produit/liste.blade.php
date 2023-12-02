@@ -21,6 +21,9 @@
               <th>
                 Type
               </th>
+              <th>
+                Unite
+              </th>
               <th></th>
               <th></th>
             </tr>
@@ -39,6 +42,9 @@
               </td>
               <td>
                 {{ $p->type }}
+              </td>
+              <td>
+                {{ $p->unite->nom }}
               </td>
               @can('valider demande produit')
               <td>
