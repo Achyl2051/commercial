@@ -319,11 +319,8 @@ INSERT INTO fournisseurs (nom, adresse, telephone, email, typeProduit) VALUES ('
 CREATE TABLE produits (
     idProduit int primary key AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
-    nature VARCHAR(100),
-    type VARCHAR(100)
+    nature VARCHAR(100)
 );
-INSERT INTO produits (nom, nature) VALUES ('Gel Main', 'sante','LIFO');
-INSERT INTO produits (nom, nature) VALUES ('Savon', 'sante','FIFO');
 
 CREATE TABLE demandes (
     idDemande int primary key AUTO_INCREMENT,
@@ -424,51 +421,7 @@ INSERT INTO unites (Nom) VALUES
     ('Litre'),
     ('Unite');
 
+ALTER TABLE produits ADD COLUMN type VARCHAR(100) AFTER nature;
 ALTER TABLE produits ADD COLUMN idUnite INT(11) AFTER type;
 ALTER TABLE produits ADD FOREIGN KEY (idUnite) REFERENCES unites(idUnite);
 ALTER TABLE sorties ADD COLUMN prixUnitaire DOUBLE PRECISION AFTER quantite;
-
-SELECT 
-    p.nom AS produit,
-    COALESCE(quantite - qtt, quantite, 0) AS stock_actuel,
-    u.nom AS unite,
-    e.prixUnitaire,
-    m.nom AS magasin
-FROM 
-    entres e 
-LEFT JOIN 
-    (SELECT idEntre,sum(quantite) AS qtt FROM sorties WHERE sorties.date<='2023-12-02' GROUP BY idEntre) AS s ON e.idEntre = s.idEntre
-JOIN 
-    produits AS p ON e.idproduit = p.idproduit
-JOIN 
-    unites AS u ON p.idUnite = u.idUnite
-JOIN 
-    magasins AS m ON e.idMagasin = m.idMagasin
-WHERE
-    e.date<='2023-12-02'
-    AND p.idproduit=1
-    AND e.idMagasin=1
-ORDER BY 
-    e.date;
-
-
-SELECT 
-    p.nom AS produit,
-    sum(quantite)-( select s.quantite from sorties s join entres en on en.idEntre=s.idEntre where en.idProduit=1 and en.idMagasin=1) AS stock_actuel,
-    u.nom AS unite,
-    sum(prixUnitaire*quantite)/sum(quantite) as prixUnitaire,
-    m.nom AS magasin
-FROM
-  entres as e
-JOIN 
-    produits AS p ON e.idproduit = p.idproduit
-JOIN 
-    unites AS u ON p.idUnite = u.idUnite
-JOIN 
-    magasins AS m ON e.idMagasin = m.idMagasin
-WHERE
-    e.date<='2023-12-02'
-    AND p.idproduit=1
-    AND e.idMagasin=1
-GROUP BY
-p.nom,u.nom,m.nom;
