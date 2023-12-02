@@ -13,7 +13,7 @@
             <label for="exampleInputPassword1">Entre</label>
             <select name="idEntre" class="form-control" >
                 @forelse ($entre as $e)
-                    <option value="{{ $e->idEntre }}">{{ $e->magasin->nom }} , {{ $e->produit->nom }} , {{ $e->date }}</option>
+                    <option value="{{ $e->idEntre }}">{{ $e->magasin->nom }} , {{ $e->produit->nom }}</option>
                 @empty
                 <p>Aucune entre</p>       
                 @endforelse

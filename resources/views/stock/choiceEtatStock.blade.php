@@ -30,12 +30,7 @@
                 @endforelse
             </select>
           </div>
-
-         <div class="form-group">
-            <label for="exampleInputUsername1">date debut</label>
-            <input type="date" name="date_debut" class="form-control" id="exampleInputUsername1">
-          </div>
-
+          
           <div class="form-group">
             <label for="exampleInputUsername1">date fin</label>
             <input type="date" name="date_fin" class="form-control" id="exampleInputUsername1">

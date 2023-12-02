@@ -10,5 +10,5 @@ class EtatStock extends Model
     use HasFactory;
     protected $table = 'etatStock';
     public $timestamps = false;
-    protected $fillable = ['produit', 'stock_actuel','unite','prixUnitaire','prixTotal','magasin'];
+    protected $fillable = ['idEntre','produit', 'stock_actuel','unite','prixUnitaire','prixTotal','magasin'];
 }

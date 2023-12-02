@@ -10,5 +10,5 @@ class Sortie extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'idSortie';
-    protected $fillable = ['idSortie', 'idEntre','date','quantite'];
+    protected $fillable = ['idSortie', 'idEntre','date','quantite','prixUnitaire'];
 }
